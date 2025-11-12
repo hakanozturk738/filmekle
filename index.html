@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container" id="form-container">
+    <div class="form-container" id="form-container" style="display:none;">
         <h2>Film Ekle</h2>
         <form id="login-form" onsubmit="return validateForm()">
             <input type="text" id="username" class="input-field" placeholder="Kullanıcı Adı" required><br>
@@ -17,15 +17,15 @@
         </form>
     </div>
 
-    <!-- AppSheet iframe -->
-    <div id="appsheet-container" class="appsheet-container">
+    <!-- AppSheet iframe'inin başlangıçta gizlenmiş olması gerekiyor -->
+    <div id="appsheet-container" class="appsheet-container" style="display:none;">
         <iframe id="appsheet-iframe" 
                 src="https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e" 
                 width="100%" 
                 height="100%" 
                 frameborder="0" 
                 style="border:none;" 
-                allowfullscreen
+                allowfullscreen 
                 sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
         </iframe>
     </div>
