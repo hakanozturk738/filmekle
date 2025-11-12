@@ -17,9 +17,9 @@ html, body {
 /* Arka Plan ve Sayfa Düzeni */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ee00ff, #bb00ff, #00ffd5, #1100ff, #ff0000); /* Gökkuşağı pastel tonları */
+    background: linear-gradient(135deg, #ee00ff, #4400ff, #00ffd5, #ffea00, #ff0000); /* Gökkuşağı pastel tonları */
     background-size: 400% 400%; /* Daha büyük bir geçiş alanı */
-    animation: gradient-animation 10s ease infinite; /* Arka plan animasyonu */
+    animation: gradient-animation 15s ease infinite; /* Arka plan animasyonu */
     display: flex;
     justify-content: center;
     align-items: center;
