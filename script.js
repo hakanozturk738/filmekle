@@ -1,53 +1,72 @@
-// Firebase Authentication ile giriş yapmak için kullanacağımız fonksiyonlar
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+// script.js — Firebase (compat) ile uyumlu. index.html içinde firebase init yapıldı ve window.firebaseAuth hazır.
 
-// Firebase Config (Firebase Console'dan aldığınız ayarları buraya yerleştirin)
-const firebaseConfig = {
-    apiKey: "AIzaSyD9MbTqWGXLLYrp4x8nwu9mYx0y_t8dpJA",
-    authDomain: "filmler-4a09c.firebaseapp.com",
-    projectId: "filmler-4a09c",
-    storageBucket: "filmler-4a09c.firebasestorage.app",
-    messagingSenderId: "779802018978",
-    appId: "1:779802018978:web:03563cf09a7316ae1503fb",
-    measurementId: "G-47T9LZNDV4"
-};
+// Debug başlangıcı
+console.log('script.js loaded');
 
-// Firebase'i başlatıyoruz
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Giriş formu ve elementlerin bağlantıları
+// Elementleri al
 const loginForm = document.getElementById('login-form');
 const formContainer = document.getElementById('form-container');
 const appsheetContainer = document.getElementById('appsheet-container');
 const usernameField = document.getElementById('username');
 const passwordField = document.getElementById('password');
 
-// Kullanıcı girişini doğrulama
-loginForm.onsubmit = function(event) {
-    event.preventDefault();  // Sayfanın yenilenmesini engelle
+// Kısa helper: email formatına çevirme (kullanıcı adını e-posta gibi kullanıyoruz)
+function usernameToEmail(username) {
+  // Dilerseniz farklı domain koyabilirsiniz. Bu sadece Firebase'in email requirement'ını karşılamak için.
+  return `${username}@example.com`;
+}
 
-    const username = usernameField.value;  // Kullanıcı adı (email olarak alınacak)
-    const password = passwordField.value;  // Şifre
+// Login işlemi
+loginForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const username = usernameField.value.trim();
+  const password = passwordField.value;
 
-    const email = `${username}@example.com`;  // Firebase'de kullanıcı adı yerine email kullanmamız lazım
+  console.log('Trying login for', username);
 
-    // Firebase Authentication ile giriş yapalım
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Giriş başarılı olduğunda yapılacak işlemler
-            const user = userCredential.user;
-            console.log('Kullanıcı giriş yaptı:', user);
-            // Giriş başarılı, formu gizleyip AppSheet iframe'ini gösterelim
-            formContainer.style.display = 'none';
-            appsheetContainer.style.display = 'block';
-        })
-        .catch((error) => {
-            // Hata durumu
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error('Giriş hatası:', errorCode, errorMessage);
-            alert("Kullanıcı adı veya şifre yanlış.");
-        });
-};
+  if (!username || !password) {
+    alert('Kullanıcı adı ve şifre girin.');
+    return;
+  }
+
+  const email = usernameToEmail(username);
+
+  // firebaseAuth nesnesi index.html'de window.firebaseAuth olarak ayarlandı
+  const auth = window.firebaseAuth;
+  if (!auth) {
+    console.error('Firebase auth bulunamadı. index.html içindeki init doğru mu?');
+    alert('Uygulama henüz hazır değil. Konsolu kontrol edin.');
+    return;
+  }
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log('Giriş başarılı:', userCredential.user);
+      // Oturum başarılı — UI değişikliği
+      formContainer.style.display = 'none';
+      appsheetContainer.style.display = 'block';
+    })
+    .catch((err) => {
+      console.error('Giriş hatası:', err);
+      // Firebase hata kodunu kullanıcıya daha anlaşılır göster
+      if (err.code === 'auth/user-not-found') {
+        alert('Kullanıcı bulunamadı. Lütfen kayıtlı olduğunuzdan emin olun.');
+      } else if (err.code === 'auth/wrong-password') {
+        alert('Şifre yanlış.');
+      } else {
+        alert('Giriş yapılamıyor: ' + (err.message || err.code));
+      }
+    });
+});
+
+// (İsteğe bağlı) auth state observer — sayfa yenilendiğinde oturum açık mı kontrol eder
+window.firebaseAuth && window.firebaseAuth.onAuthStateChanged(function(user) {
+  console.log('onAuthStateChanged', user);
+  if (user) {
+    formContainer.style.display = 'none';
+    appsheetContainer.style.display = 'block';
+  } else {
+    formContainer.style.display = 'block';
+    appsheetContainer.style.display = 'none';
+  }
+});
