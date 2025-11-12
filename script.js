@@ -70,3 +70,9 @@ function sessionTimeout() {
         localStorage.removeItem('userLoggedIn');  // Giriş bilgilerini temizle
     }
 }
+
+// Sekme veya sayfa kapatıldığında 'localStorage'ı temizle
+window.onbeforeunload = function() {
+    localStorage.removeItem('lastInteractionTime');
+    localStorage.removeItem('userLoggedIn');
+};
