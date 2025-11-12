@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AppSheet Embed</title>
+    <title>Film Ekle</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Film Ekle Formu Başlangıcı -->
-    <div class="form-container" id="login-form-container">
+    <div class="form-container" id="form-container">
         <h2>Film Ekle</h2>
         <form id="login-form" onsubmit="return validateForm()">
             <input type="text" id="username" class="input-field" placeholder="Kullanıcı Adı" required><br>
@@ -18,14 +17,16 @@
         </form>
     </div>
 
-    <!-- AppSheet Uygulamasını Embed Etme -->
-    <div class="iframe-container" id="iframe-container">
-        <iframe src="https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e" 
+    <!-- Embed edilecek AppSheet uygulaması burada gizli olacak -->
+    <div id="appsheet-container" class="appsheet-container">
+        <iframe id="appsheet-iframe" 
+                src="https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e" 
                 width="100%" 
                 height="100%" 
                 frameborder="0" 
                 style="border:none;" 
-                allowfullscreen>
+                allowfullscreen 
+                sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
         </iframe>
     </div>
 
