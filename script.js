@@ -15,7 +15,7 @@ function validateForm() {
 
         return false; // Formun sayfayı yeniden yüklemesini engelle
     } else {
-        alert("Kullanıcı adı veya şifre yanlış.");
+        alert("Film adı veya karakter adı yanlış.");
         return false; // Formun gönderilmesini engelle
     }
 }
