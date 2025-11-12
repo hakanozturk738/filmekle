@@ -112,6 +112,7 @@ h2 {
     top: 0;
     left: 0;
     z-index: -1; /* iframe'in formdan arka planda olması için */
+    display: none; /* Başlangıçta iframe gizli */
 }
 
 /* Mobil uyumlu tasarım */
