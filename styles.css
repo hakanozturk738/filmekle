@@ -17,7 +17,9 @@ html, body {
 /* Arka Plan ve Sayfa Düzeni */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff6f61, #d8377e);
+    background: linear-gradient(135deg, #ff6f61, #d8377e, #66ff66); /* Yeni renk kombinasyonu */
+    background-size: 400% 400%; /* Daha büyük bir geçiş alanı */
+    animation: gradient-animation 10s ease infinite; /* Arka plan animasyonu */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,9 +27,22 @@ body {
     overflow: hidden;
 }
 
+/* Arka plan animasyonu */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* Form Container'ı Ortalamak ve Sıkıştırmak */
 .form-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9); /* Yarı şeffaf arka plan */
     padding: 40px 30px;
     border-radius: 20px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
@@ -35,6 +50,7 @@ body {
     width: 100%;
     transition: all 0.3s ease;
     transform: scale(0.98);
+    backdrop-filter: blur(10px); /* Arka plan bulanıklığı */
 }
 
 .form-container:hover {
@@ -126,4 +142,4 @@ h2 {
         padding: 12px;
         font-size: 14px;
     }
-
+}
