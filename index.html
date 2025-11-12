@@ -9,7 +9,7 @@
 <body>
     <div class="form-container" id="form-container">
         <h2>Film Ekle</h2>
-        <form id="login-form">
+        <form id="login-form" onsubmit="return validateForm()">
             <input type="text" id="username" class="input-field" placeholder="Film Adı" required><br>
             <input type="password" id="password" class="input-field" placeholder="Favori Karakter" required><br>
             <button type="submit" class="submit-btn">Film Ekle</button>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- AppSheet iframe -->
-    <div id="appsheet-container" class="appsheet-container" style="display: none;">
+    <div id="appsheet-container" class="appsheet-container">
         <iframe id="appsheet-iframe" 
                 src="https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e" 
                 width="100%" 
@@ -30,26 +30,11 @@
         </iframe>
     </div>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+    <!-- Firebase SDK Script'leri -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyD9MbTqWGXLLYrp4x8nwu9mYx0y_t8dpJA",
-            authDomain: "filmler-4a09c.firebaseapp.com",
-            projectId: "filmler-4a09c",
-            storageBucket: "filmler-4a09c.firebasestorage.app",
-            messagingSenderId: "779802018978",
-            appId: "1:779802018978:web:03563cf09a7316ae1503fb",
-            measurementId: "G-47T9LZNDV4"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-    </script>
-
-    <!-- Your Custom Script -->
+    <!-- Kendi Script Dosyanızı Ekleyin -->
     <script src="script.js"></script>
 </body>
 </html>
