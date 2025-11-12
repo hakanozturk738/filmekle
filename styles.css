@@ -17,14 +17,15 @@ html, body {
 /* Arka Plan ve Sayfa Düzeni */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff6f61, #d8377e, #66ff66); /* Yeni renk kombinasyonu */
+    background: linear-gradient(135deg, #00c6ff, #0072ff, #9b00ff); /* Fütüristik mavi tonları */
     background-size: 400% 400%; /* Daha büyük bir geçiş alanı */
-    animation: gradient-animation 10s ease infinite; /* Arka plan animasyonu */
+    animation: gradient-animation 15s ease infinite; /* Arka plan animasyonu */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     overflow: hidden;
+    color: #fff;
 }
 
 /* Arka plan animasyonu */
@@ -42,15 +43,15 @@ body {
 
 /* Form Container'ı Ortalamak ve Sıkıştırmak */
 .form-container {
-    background: rgba(255, 255, 255, 0.9); /* Yarı şeffaf arka plan */
+    background: rgba(0, 0, 0, 0.7); /* Yarı şeffaf koyu arka plan */
     padding: 40px 30px;
     border-radius: 20px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
     transition: all 0.3s ease;
     transform: scale(0.98);
-    backdrop-filter: blur(10px); /* Arka plan bulanıklığı */
+    backdrop-filter: blur(20px); /* Arka plan bulanıklığı */
 }
 
 .form-container:hover {
@@ -58,12 +59,14 @@ body {
 }
 
 h2 {
-    font-size: 28px;
-    color: #333;
+    font-size: 32px;
+    color: #00ffcc;
     margin-bottom: 20px;
     text-align: center;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .input-field {
@@ -71,16 +74,17 @@ h2 {
     padding: 14px;
     margin: 10px 0;
     border-radius: 10px;
-    border: 2px solid #ddd;
+    border: 2px solid #333;
     font-size: 16px;
     transition: all 0.3s ease;
-    background-color: #f9f9f9;
+    background-color: #222;
+    color: #fff;
 }
 
 .input-field:focus {
-    border-color: #ff6f61;
+    border-color: #00ffcc;
     outline: none;
-    background-color: #fff;
+    background-color: #333;
 }
 
 .submit-btn {
@@ -89,39 +93,43 @@ h2 {
     margin: 20px 0;
     border-radius: 10px;
     border: none;
-    background: linear-gradient(135deg, #ff6f61, #d8377e);
+    background: linear-gradient(135deg, #ff007f, #00b3ff);
     color: white;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    background-size: 300% 300%;
 }
 
 .submit-btn:hover {
-    background: linear-gradient(135deg, #d8377e, #ff6f61);
+    background: linear-gradient(135deg, #00b3ff, #ff007f);
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background-position: 100% 100%;
 }
 
 .submit-btn:active {
     transform: translateY(2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .forgot-password {
     margin-top: 10px;
     font-size: 14px;
-    color: #555;
+    color: #bbb;
     text-align: center;
     text-decoration: none;
     transition: color 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 .forgot-password:hover {
-    color: #ff6f61;
+    color: #00ffcc;
 }
 
+/* AppSheet Container */
 .appsheet-container {
     display: none; /* Başlangıçta gizle */
     width: 100%;
@@ -135,11 +143,15 @@ h2 {
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .input-field {
         padding: 12px;
         font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
     }
 }
