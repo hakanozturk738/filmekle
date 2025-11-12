@@ -22,4 +22,35 @@
   <div id="appsheet-container" class="appsheet-container" style="display:none;">
     <iframe id="appsheet-iframe"
             src="https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e"
-            width="100%" height="100%" framebo
+            width="100%" height="100%" frameborder="0" style="border:none;" allowfullscreen
+            sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
+    </iframe>
+  </div>
+
+  <!-- Firebase (compat) - non-module, global "firebase" sağlar -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+  <!-- Firebase config ve init (INLINE, script.js kullanmadan önce init olsun) -->
+  <script>
+    // Firebase config (sizin verdiğiniz)
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9MbTqWGXLLYrp4x8nwu9mYx0y_t8dpJA",
+      authDomain: "filmler-4a09c.firebaseapp.com",
+      projectId: "filmler-4a09c",
+      storageBucket: "filmler-4a09c.firebasestorage.app",
+      messagingSenderId: "779802018978",
+      appId: "1:779802018978:web:03563cf09a7316ae1503fb",
+      measurementId: "G-47T9LZNDV4"
+    };
+    // Initialize Firebase (compat)
+    firebase.initializeApp(firebaseConfig);
+    // make auth globally accessible for script.js
+    window.firebaseAuth = firebase.auth();
+    console.log('Firebase initialized (compat). auth ready.');
+  </script>
+
+  <!-- Your app script (normal non-module) -->
+  <script src="script.js"></script>
+</body>
+</html>
