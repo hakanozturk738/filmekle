@@ -5,21 +5,19 @@ var validPassword = "1235";  // Gerçek şifrenizi buraya yazın
 // Oturum süresi için zaman aşımı süresi (10 dakika = 600000 ms)
 var timeoutDuration = 10 * 60 * 1000;  // 10 dakika
 
-// Sayfa yüklendikten sonra işlemi başlatıyoruz
+// Sayfa yenilendiğinde giriş kontrolü yapacağız
 window.onload = function() {
-    // İlk başta formu gizlemek için hemen bunu yapıyoruz
-    document.getElementById('form-container').style.display = "none";
-    
     // Eğer kullanıcı daha önce giriş yapmışsa ve zaman aşımına uğramamışsa, giriş formu gösterilmesin
     var lastInteraction = localStorage.getItem('lastInteractionTime');
-    var userLoggedIn = localStorage.getItem('userLoggedIn');  // Giriş durumu kontrolü
-
-    if (userLoggedIn === 'true' && lastInteraction && (Date.now() - lastInteraction < timeoutDuration)) {
-        // Eğer giriş yapılmışsa ve zaman aşımı süresi geçmemişse, iframe'i göster
+    
+    if (lastInteraction && (Date.now() - lastInteraction < timeoutDuration)) {
+        // Eğer giriş süresi geçmemişse, formu gizleyip iframe'i göster
+        document.getElementById('form-container').style.display = "none";
         document.getElementById('appsheet-container').style.display = "block";
     } else {
-        // Eğer zaman aşımı varsa veya giriş yapılmamışsa, giriş formunu göster
+        // Eğer zaman aşımı varsa, giriş formu gösterilsin
         document.getElementById('form-container').style.display = "block";
+        document.getElementById('appsheet-container').style.display = "none";
     }
 
     // Sayfada herhangi bir işlem yapıldığında (tıklama, yazı yazma vb.), zaman aşımını sıfırlıyoruz
@@ -43,7 +41,6 @@ function validateForm() {
 
         // Kullanıcı başarılı giriş yaptı, son etkileşim zamanını kaydediyoruz
         localStorage.setItem('lastInteractionTime', Date.now());
-        localStorage.setItem('userLoggedIn', 'true');  // Giriş yapıldığı bilgisini sakla
 
         return false; // Formun sayfayı yeniden yüklemesini engelle
     } else {
@@ -60,19 +57,10 @@ function updateInteractionTime() {
 // Zaman aşımı fonksiyonu: Eğer 10 dakika boyunca etkileşim yoksa giriş ekranını göster
 function sessionTimeout() {
     var lastInteraction = localStorage.getItem('lastInteractionTime');
-    var userLoggedIn = localStorage.getItem('userLoggedIn');  // Giriş durumu kontrolü
-
-    if (userLoggedIn === 'true' && lastInteraction && (Date.now() - lastInteraction > timeoutDuration)) {
+    if (lastInteraction && (Date.now() - lastInteraction > timeoutDuration)) {
         // Kullanıcı uzun süre etkileşimde bulunmadığı için giriş formunu göster
         document.getElementById('form-container').style.display = "block";
         document.getElementById('appsheet-container').style.display = "none";
         localStorage.removeItem('lastInteractionTime');  // Eski zaman bilgilerini temizle
-        localStorage.removeItem('userLoggedIn');  // Giriş bilgilerini temizle
     }
 }
-
-// Sekme veya sayfa kapatıldığında 'localStorage'ı temizle
-window.onbeforeunload = function() {
-    localStorage.removeItem('lastInteractionTime');
-    localStorage.removeItem('userLoggedIn');
-};
