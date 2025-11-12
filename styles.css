@@ -17,7 +17,7 @@ html, body {
 /* Arka Plan ve Sayfa Düzeni */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #00c6ff, #0072ff, #9b00ff); /* Fütüristik mavi tonları */
+    background: linear-gradient(135deg, #ff007f, #00b3ff); /* Kırmızı ve mavi tonları arasında yumuşak geçiş */
     background-size: 400% 400%; /* Daha büyük bir geçiş alanı */
     animation: gradient-animation 15s ease infinite; /* Arka plan animasyonu */
     display: flex;
@@ -74,17 +74,17 @@ h2 {
     padding: 14px;
     margin: 10px 0;
     border-radius: 10px;
-    border: 2px solid #333;
+    border: 2px solid #ddd;
     font-size: 16px;
+    background-color: #fff; /* Kullanıcı adı ve şifre kutucukları beyaz */
+    color: #333;
     transition: all 0.3s ease;
-    background-color: #222;
-    color: #fff;
 }
 
 .input-field:focus {
     border-color: #00ffcc;
     outline: none;
-    background-color: #333;
+    background-color: #f0f0f0; /* Focus olduğunda arka plan rengi biraz açılır */
 }
 
 .submit-btn {
