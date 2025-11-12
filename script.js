@@ -5,20 +5,21 @@ var validPassword = "1235";  // Gerçek şifrenizi buraya yazın
 // Oturum süresi için zaman aşımı süresi (10 dakika = 600000 ms)
 var timeoutDuration = 10 * 60 * 1000;  // 10 dakika
 
-// Sayfa yenilendiğinde giriş kontrolü yapacağız
+// Sayfa yüklendikten sonra işlemi başlatıyoruz
 window.onload = function() {
+    // İlk başta formu gizlemek için hemen bunu yapıyoruz
+    document.getElementById('form-container').style.display = "none";
+    
     // Eğer kullanıcı daha önce giriş yapmışsa ve zaman aşımına uğramamışsa, giriş formu gösterilmesin
     var lastInteraction = localStorage.getItem('lastInteractionTime');
     var userLoggedIn = localStorage.getItem('userLoggedIn');  // Giriş durumu kontrolü
 
     if (userLoggedIn === 'true' && lastInteraction && (Date.now() - lastInteraction < timeoutDuration)) {
-        // Eğer giriş yapılmışsa ve zaman aşımı süresi geçmemişse, formu gizle, iframe'i göster
-        document.getElementById('form-container').style.display = "none";
+        // Eğer giriş yapılmışsa ve zaman aşımı süresi geçmemişse, iframe'i göster
         document.getElementById('appsheet-container').style.display = "block";
     } else {
-        // Eğer zaman aşımı varsa veya giriş yapılmamışsa, giriş formu gösterilsin
+        // Eğer zaman aşımı varsa veya giriş yapılmamışsa, giriş formunu göster
         document.getElementById('form-container').style.display = "block";
-        document.getElementById('appsheet-container').style.display = "none";
     }
 
     // Sayfada herhangi bir işlem yapıldığında (tıklama, yazı yazma vb.), zaman aşımını sıfırlıyoruz
