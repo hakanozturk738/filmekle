@@ -9,9 +9,9 @@ function validateForm() {
 
     // Doğru kullanıcı adı ve şifreyi kontrol et
     if (username === validUsername && password === validPassword) {
-        // Giriş başarılıysa iframe'i göster
-        document.getElementById('login-form-container').style.display = "none"; // Giriş formunu gizle
-        document.getElementById('iframe-container').style.display = "block"; // AppSheet iframe'ini göster
+        // Giriş başarılıysa formu gizle ve AppSheet iframe'ini göster
+        document.getElementById('form-container').style.display = "none";
+        document.getElementById('appsheet-container').style.display = "block";
         return false; // Formun sayfayı yeniden yüklemesini engelle
     } else {
         alert("Kullanıcı adı veya şifre yanlış.");
