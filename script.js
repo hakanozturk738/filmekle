@@ -9,8 +9,9 @@ function validateForm() {
 
     // Doğru kullanıcı adı ve şifreyi kontrol et
     if (username === validUsername && password === validPassword) {
-        // Yönlendirmek istediğiniz AppSheet URL'ini buraya ekleyin
-        window.location.href = "https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e"; // AppSheet projenizin URL'sini buraya koyun
+        // Giriş başarılıysa iframe'i göster
+        document.getElementById('login-form-container').style.display = "none"; // Giriş formunu gizle
+        document.getElementById('iframe-container').style.display = "block"; // AppSheet iframe'ini göster
         return false; // Formun sayfayı yeniden yüklemesini engelle
     } else {
         alert("Kullanıcı adı veya şifre yanlış.");
