@@ -7,20 +7,11 @@
 
 /* HTML ve Body için margin/padding sıfırlaması */
 html, body {
-    height: 100%; /* Yükseklik %100 olacak */
-    width: 100%;  /* Genişlik %100 olacak */
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Sayfada kaydırma çubuğu olmayacak */
-}
-
-/* Google Sites'ın varsayılan kenar boşluklarını engellemek */
-iframe {
-    margin: 0;
-    padding: 0;
-    border: none;
-    width: 100%;
     height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 /* Arka Plan ve Sayfa Düzeni */
@@ -30,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Sayfanın tamamı */
+    height: 100%;
     overflow: hidden;
 }
 
@@ -115,7 +106,6 @@ h2 {
     color: #ff6f61;
 }
 
-/* AppSheet iframe Container */
 .appsheet-container {
     display: none; /* Başlangıçta gizle */
     width: 100%;
