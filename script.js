@@ -9,10 +9,13 @@ function validateForm() {
 
     // Doğru kullanıcı adı ve şifreyi kontrol et
     if (username === validUsername && password === validPassword) {
-        // Giriş başarılıysa formu gizle ve AppSheet yeni bir pencerede aç
+        // Giriş başarılıysa formu gizle ve AppSheet iframe'ini göster
         document.getElementById('form-container').style.display = "none";
-        window.open("https://www.appsheet.com/start/4ae2c219-2ac4-461f-908d-9f29b3f3092e", "_blank", "width=100%,height=100%");  // AppSheet'in URL'si
+        document.getElementById('appsheet-container').style.display = "block";  // iframe'i göster
+
         return false; // Formun sayfayı yeniden yüklemesini engelle
     } else {
         alert("Kullanıcı adı veya şifre yanlış.");
-        return false; // Formun gönderil
+        return false; // Formun gönderilmesini engelle
+    }
+}
