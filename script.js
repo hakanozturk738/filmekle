@@ -1,21 +1,35 @@
-// Sabit kullanıcı adı ve şifre belirliyoruz
-var validUsername = "hakan";  // Gerçek kullanıcı adınızı buraya yazın
-var validPassword = "1235";  // Gerçek şifrenizi buraya yazın
+// Firebase Authentication ile giriş yapmak için kullanacağımız fonksiyonlar
 
-// Formu doğrulama fonksiyonu
-function validateForm() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+const loginForm = document.getElementById('login-form');
+const formContainer = document.getElementById('form-container');
+const appsheetContainer = document.getElementById('appsheet-container');
+const usernameField = document.getElementById('username');
+const passwordField = document.getElementById('password');
 
-    // Doğru kullanıcı adı ve şifreyi kontrol et
-    if (username === validUsername && password === validPassword) {
-        // Giriş başarılıysa formu gizle ve AppSheet iframe'ini göster
-        document.getElementById('form-container').style.display = "none";
-        document.getElementById('appsheet-container').style.display = "block";  // iframe'i göster
+// Kullanıcı girişini doğrulama
+loginForm.onsubmit = function(event) {
+    event.preventDefault();  // Sayfanın yenilenmesini engelle
 
-        return false; // Formun sayfayı yeniden yüklemesini engelle
-    } else {
-        alert("Film adı veya karakter adı yanlış.");
-        return false; // Formun gönderilmesini engelle
-    }
-}
+    const username = usernameField.value;  // Kullanıcı adı (email'e çevrilecek)
+    const password = passwordField.value;  // Şifre
+
+    const email = `${username}@example.com`;  // Firebase'de kullanıcı adı yerine email kullanmamız lazım
+
+    // Firebase Authentication ile giriş yapalım
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Giriş başarılı olduğunda yapılacak işlemler
+            const user = userCredential.user;
+            console.log('Kullanıcı giriş yaptı:', user);
+            // Giriş başarılı, formu gizleyip AppSheet iframe'ini gösterelim
+            formContainer.style.display = 'none';
+            appsheetContainer.style.display = 'block';
+        })
+        .catch((error) => {
+            // Hata durumu
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Giriş hatası:', errorCode, errorMessage);
+            alert("Kullanıcı adı veya şifre yanlış.");
+        });
+};
