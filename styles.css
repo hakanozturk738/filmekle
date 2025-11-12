@@ -17,7 +17,7 @@ html, body {
 /* Arka Plan ve Sayfa Düzeni */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #FF66FF, #FF33CC, #FF0099, #00FF99, #00CCCC, #0099FF, #0066CC, #0033CC, #0000FF); /* Gökkuşağı pastel tonları */
+    background: linear-gradient(135deg, #7b9fe8, #e092b3, #e0dba6); /* Gökkuşağı pastel tonları */
     background-size: 400% 400%; /* Daha büyük bir geçiş alanı */
     animation: gradient-animation 15s ease infinite; /* Arka plan animasyonu */
     display: flex;
@@ -33,7 +33,13 @@ body {
     0% {
         background-position: 0% 50%;
     }
+    25% {
+        background-position: 50% 75%;
+    }
     50% {
+        background-position: 75% 100%;
+    }
+    75% {
         background-position: 100% 50%;
     }
     100% {
